@@ -1,0 +1,15 @@
+{% extends "admin/change_list.html" %} {% block object-tools-items %} {{
+block.super }}
+<li>
+  <form method="get" action="." id="changelist-search">
+    <input
+      type="text"
+      name="q"
+      size="40"
+      value="{{ cl.query }}"
+      placeholder="Search by name or ticket code"
+    />
+    <input type="submit" value="Search" />
+  </form>
+</li>
+{% endblock %}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /* Your ticket styling here */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        padding: 20px;
+      }
+      .ticket {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      /* Add more styles as needed */
+    </style>
+  </head>
+  <body>
+    <div class="ticket">
+      <h2>Your Ticket Details</h2>
+      <p>Event: KWANZA</p>
+      <p>Ticket Code: {{ ticket.ticket_code }}</p>
+      <p>Ticket Number: {{ ticket.ticket_number }}</p>
+      <p>Total Cost: {{ ticket.total_cost }}</p>
+      <!-- Add more ticket details as needed -->
+    </div>
+  </body>
+</html>

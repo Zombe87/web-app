@@ -1,0 +1,119 @@
+<!-- admin.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <style>
+      .search-highlight {
+        background-color: yellow !important;
+      }
+      /* or any other highlighting style */
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+
+      .admin-dashboard {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        color: #333;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
+
+      a {
+        display: inline-block;
+        padding: 8px 16px;
+        text-decoration: none;
+        background-color: #4caf50;
+        color: #fff;
+        border-radius: 3px;
+        transition: background-color 0.3s;
+      }
+
+      a:hover {
+        background-color: #45a049;
+      }
+
+      p {
+        margin-top: 20px;
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="admin-dashboard">
+      <h2>Pending Ticket Approvals</h2>
+      <!-- Add a search form -->
+      <form method="GET" action="{% url 'admin_dashboard' %}">
+        <input
+          type="text"
+          name="search"
+          placeholder="Search by name or ticket code"
+        />
+        <button type="submit">Search</button>
+      </form>
+
+      {% if pending_appointments %}
+      <table>
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Surname</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for appointment in pending_appointments %}
+          <tr>
+            <td>{{ appointment.first_name }}</td>
+            <td>{{ appointment.surname }}</td>
+            <td>{{ appointment.email }}</td>
+            <td>
+              <a href="{% url 'approve_appointment' appointment.id %}"
+                >Approve</a
+              >
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p>No pending appointments.</p>
+      {% endif %}
+
+      <!-- Add a link to the admin dashboard -->
+      <a href="{% url 'admin:index' %}">Admin</a>
+    </div>
+  </body>
+</html>
